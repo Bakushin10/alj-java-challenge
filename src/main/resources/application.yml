@@ -1,0 +1,22 @@
+server:
+    port: 8083
+
+spring:
+    datasource:
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: shin
+        password: password
+
+    jpa:
+        generate-ddl: false
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
