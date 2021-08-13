@@ -50,3 +50,29 @@ Please let us know more about your Java experience in a few sentences. For examp
 - I have 3 years experience in Java and I started to use Spring Boot from last year
 - I'm a beginner and just recently learned Spring Boot
 - I know Spring Boot very well and have been using it for many years
+
+
+to do
+create table by logging in to the running postgres container. 
+
+
+CREATE TABLE Employee(
+	id BIGINT,
+	EMPLOYEE_NAME VARCHAR( 50 ),
+	EMPLOYEE_SALARY integer,
+	DEPARTMENT VARCHAR( 50 ),
+);
+
+populate db with some data...
+
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (1, 'Valene Hasker', '9299948', 'Legal');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (2, 'Hersch Haycock', '11319624', 'Human Resources');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (3, 'Florinda St Hill', '16135903', 'Support');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (4, 'Rolf Tett', '18414949', 'Engineering');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (5, 'Marja Attock', '17163489', 'Business Development');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (6, 'Edwina Tomala', '12353531', 'Legal');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (7, 'Kata Cardiff', '10531623', 'Support');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (8, 'Erma Firebrace', '4113895', 'Accounting');
+    insert  into Employee (id, EMPLOYEE_NAME, EMPLOYEE_SALARY, DEPARTMENT) values (9, 'Corri Autin', '16364551', 'Marketing');
+
+  more data in Employee.sql

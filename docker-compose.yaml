@@ -20,6 +20,7 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         depends_on:
             - postgres
+            - redis
 
         networks:
             - axa-network
@@ -36,6 +37,16 @@ services:
             - POSTGRES_PASSWORD=password
         networks:
             - axa-network
+    
+    # redis for external caching, but I ended up using Map as cache in memory
+    redis:
+        image : redis:alpine3.14
+        container_name : ${CONTAINER_PREFIX}-redis
+        ports:
+            - '6379:6379'
+        networks:
+            - axa-network
+
         
 networks:
     axa-network:
