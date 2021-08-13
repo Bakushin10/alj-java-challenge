@@ -1,12 +1,14 @@
 server:
-    port: 8083
+    port: 8080
 
 spring:
+    config:
+        import: optional:file:.env[.properties]
     datasource:
         driverClassName: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5432/postgres
-        username: shin
-        password: password
+        url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
+        username: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
 
     jpa:
         generate-ddl: false

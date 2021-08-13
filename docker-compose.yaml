@@ -13,51 +13,30 @@ services:
             - CONTEXT_PATH=${CONTEXT_PATH}
             - SPRING_PROFILE=${SPRING_PROFILE}
 
-            # switch between R2DBC_HOST_CONTAINER and R2DBC_HOST_LOCALHOST
-            - R2DBC_HOST=${R2DBC_HOST_CONTAINER}
-            - R2DBC_DB=${R2DBC_DB}
-            - R2DBC_USERNAME=${R2DBC_USERNAME}
-            - R2DBC_PASSWORD=${R2DBC_PASSWORD}
+            # switch between POSTGRES_HOST_LOCALHOST and POSTGRES_HOST_CONTAINER
+            - POSTGRES_HOST=${POSTGRES_HOST_CONTAINER}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        depends_on:
+            - postgres
+
         networks:
-            - component-test-network
+            - axa-network
     
     postgres:
         image: ${POSTGRES_IMAGE}
-        container_name: postgres-component-test
+        container_name: ${CONTAINER_PREFIX}-postgres
         ports:
             - '5432:5432'
         volumes:
             - ${POSTGRES_MASTER_DATA}:/var/lib/postgresql/data
         environment:
-            - POSTGRES_DB=${POSTGRES_DB}
-            - POSTGRES_PASSWORD=${password}
+            - POSTGRES_DB=POSTGRES_DB
+            - POSTGRES_PASSWORD=password
         networks:
-            - component-test-network
-
-    #
-    #
-    # this is other service that main app need to talk to
-    # in order to test the connection with other microservices
-    # notice that there is no build command since it only needs to
-    # spin up the container from the image
-    #
-    # if the image needs to be updated, build the new image separately 
-    #
-    #
-    #
-    # other-services-to-talk-to:
-    #     image: ${COMPONENT_TEST}/service-1
-    #     container_name: ${COMPONENT_TEST}-service-1
-    #     ports:
-    #         - 8081:8080
-    #     environment:
-    #         - CONTEXT_PATH=${CONTEXT_PATH}
-    #         - SPRING_PROFILE=${SPRING_PROFILE}
-    #         - R2DBC_HOST=${R2DBC_HOST}
-    #         - R2DBC_DB=${R2DBC_DB}
-    #         - R2DBC_USERNAME=${R2DBC_USERNAME}
-    #         - R2DBC_PASSWORD=${R2DBC_PASSWORD}
+            - axa-network
         
 networks:
-    component-test-network:
-        name: component-test-network
+    axa-network:
+        name: axa-network
