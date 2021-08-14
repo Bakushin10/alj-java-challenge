@@ -68,7 +68,8 @@ CREATE TABLE Employee(
 
 ### prerequisite
 
-- working experience with Docker and docker-compose and have Docker installed on your system.
+- Docker is installed on your system.
+- working experience with Docker and docker-compose.
 - working experience with container and postgres.
 
 
