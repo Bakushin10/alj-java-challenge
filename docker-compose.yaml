@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+    
     java-service:
         build:
             context: .
@@ -20,7 +21,7 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         depends_on:
             - postgres
-            - redis
+            # - redis
 
         networks:
             - axa-network
@@ -30,6 +31,8 @@ services:
         container_name: ${CONTAINER_PREFIX}-postgres
         ports:
             - '5432:5432'
+
+        # volumes for saving and persisting data locally. change POSTGRES_MASTER_DATA in .env
         volumes:
             - ${POSTGRES_MASTER_DATA}:/var/lib/postgresql/data
         environment:
@@ -47,7 +50,6 @@ services:
         networks:
             - axa-network
 
-        
 networks:
     axa-network:
         name: axa-network

@@ -1,6 +1,5 @@
 package jp.co.axa.apidemo.repositories;
 
-import jp.co.axa.apidemo.dto.Department;
 import jp.co.axa.apidemo.entities.Employee;
 import org.hibernate.annotations.NamedNativeQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
