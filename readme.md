@@ -59,7 +59,7 @@ simply type `select * from Employee;` to check you have create the table. if you
 simply run `gradle test` to execute the unit tests.
 
 ### Component Test
-run `gradle componentTestDocker` to execute component test. since I do now have other services to test against this service, I simply test the health check. 
+run `gradle componentTestDocker` to execute component test. since I do now have other services to test against this service, I simply test the health check. please read more for the commnet [here](https://github.com/Bakushin10/alj-java-challenge/blob/dev-shin/src/componentTest/java/AxaJavaAPIComponentTest.java).
 
 
 ## My experience in Java
