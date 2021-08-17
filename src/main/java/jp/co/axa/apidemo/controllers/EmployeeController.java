@@ -60,6 +60,10 @@ public class EmployeeController {
     public void saveEmployee(Employee employee){
         logger.info("==== POST /employees" + employee);
         employeeService.saveEmployee(employee);
+
+        // since new item is updated, clear the cache.
+        // ideally, we should use materialized view to only fetch the updated items
+        cache.put("all", null);
         System.out.println("Employee Saved Successfully");
     }
 
@@ -68,6 +72,11 @@ public class EmployeeController {
         logger.info("==== POST /employees/" + employeeId);
         employeeService.deleteEmployee(employeeId);
         System.out.println("Employee Deleted Successfully");
+
+        // remove item from the cache
+        if(cache.get(employeeId) != null){
+            cache.put(employeeId, null);
+        }
     }
 
     @PutMapping("/employees/{employeeId}")
@@ -77,6 +86,11 @@ public class EmployeeController {
         Employee emp = employeeService.getEmployee(employeeId);
         if(emp != null){
             employeeService.updateEmployee(employee);
+        }
+
+        // clear the cache or we can make another http call tp fetch and update the cache
+        if(cache.get(employeeId) != null){
+            cache.put(employeeId, null);
         }
     }
 
