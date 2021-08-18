@@ -32,7 +32,7 @@ public class EmployeeControllerTest {
 
     @Test
     @DisplayName("should return employee object")
-    void  shouldReturnEmployeeObject(){
+    void  shouldReturnEmployeeObject() throws Exception {
         Employee employee = new Employee(
                 1L,
                 "John Oliver",
@@ -54,7 +54,7 @@ public class EmployeeControllerTest {
 
     @Test
     @DisplayName("should return employee object with given id")
-    void  shouldReturnEmployeeObjectWithGivenID(){
+    void  shouldReturnEmployeeObjectWithGivenID() throws Exception {
         Employee employee = new Employee(
                 1L,
                 "John Oliver",

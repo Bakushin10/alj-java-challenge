@@ -58,8 +58,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
     }
 
-    public void saveEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public boolean hasEmployeeId(long employeeId){
+        return employeeRepository.existsById(employeeId);
+    }
+
+    public Employee saveEmployee(Employee employee){
+        System.out.println(employee);
+        return employeeRepository.save(employee);
     }
 
     public void deleteEmployee(Long employeeId){
