@@ -57,3 +57,15 @@ run `gradle componentTestDocker` to execute component test. since I do now have 
 
 ## My experience in Java
 I have 1-2 years of expericnes in Java and spring boot. 
+
+## changes I have made 
+- bug fix
+- performance improvement (add cache)
+- add dependencies
+- update dependency management to gradle
+- add Dockerfile and docker-compose.yaml
+- changed the db to postgres
+- use .env for environment variables
+- testing
+	- unit test
+	- component test
