@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+    
+    java-service:
+        build:
+            context: .
+            dockerfile: ${DOCKERFILE_JAVA_SERVICE}
+        image: ${IMAGE_NAME}-service
+        container_name: ${IMAGE_NAME}
+        ports:
+            - 8080:8080
+        environment:
+            - CONTEXT_PATH=${CONTEXT_PATH}
+            - SPRING_PROFILE=${SPRING_PROFILE}
+
+            # switch between POSTGRES_HOST_LOCALHOST and POSTGRES_HOST_CONTAINER
+            - POSTGRES_HOST=${POSTGRES_HOST_CONTAINER}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        depends_on:
+            - postgres
+            # - redis
+
+        networks:
+            - axa-network
+    
+    postgres:
+        image: ${POSTGRES_IMAGE}
+        container_name: ${CONTAINER_PREFIX}-postgres
+        ports:
+            - '5432:5432'
+
+        # volumes for saving and persisting data locally. change POSTGRES_MASTER_DATA in .env
+        volumes:
+            - ${POSTGRES_MASTER_DATA}:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=POSTGRES_DB
+            - POSTGRES_PASSWORD=password
+        networks:
+            - axa-network
+    
+    # redis for external caching, but I ended up using Map as cache in memory
+    redis:
+        image : redis:alpine3.14
+        container_name : ${CONTAINER_PREFIX}-redis
+        ports:
+            - '6379:6379'
+        networks:
+            - axa-network
+
+networks:
+    axa-network:
+        name: axa-network
