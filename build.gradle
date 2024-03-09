@@ -10,8 +10,8 @@ plugins {
 
 group = "$serviceGroupId"
 version = "$serviceVersion"
-sourceCompatibility = '1.11'
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = '16'
+targetCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenLocal()

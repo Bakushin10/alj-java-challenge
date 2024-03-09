@@ -1,4 +1,4 @@
-FROM gradle:7.1.1-jdk11 as builder
+FROM gradle:7.1.1-jdk16 as builder
 ENV APP_HOME=app
 RUN mkdir APP_HOME
 WORKDIR /app
