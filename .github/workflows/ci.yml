@@ -27,16 +27,31 @@ jobs:
         with:
           java-version: '16'
           distribution: 'temurin'
+    
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Download and install Gradle
+        run: |
+          wget https://services.gradle.org/distributions/gradle-7.1.1-bin.zip
+          sudo mkdir /opt/gradle
+          sudo unzip -d /opt/gradle gradle-7.1.1-bin.zip
+          export PATH=$PATH:/opt/gradle/gradle-7.1.1/bin
+      
+      - name: check code
+        run: |
+             ls
+             gradle -version
 
       # Set executable permission for Gradle wrapper
       - name: Set executable permission for Gradle wrapper
         run: chmod +x gradlew
 
-      - name: Regenerate Gradle Wrapper
-        run: ./gradlew wrapper --gradle-version 7.1.1
+      # - name: Regenerate Gradle Wrapper
+      #   run: ./gradlew wrapper --gradle-version 7.1.1
 
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: gradle build
 
 #      # Set executable permission for Gradle wrapper
 #      - name: Set executable permission for Gradle wrapper
